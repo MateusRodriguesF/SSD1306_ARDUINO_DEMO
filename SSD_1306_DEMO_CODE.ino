@@ -915,20 +915,20 @@ void setup() {
   display.clearDisplay();
   display.drawBitmap(0, 0, logoTeubas, 128, 64, WHITE);
   display.display();
-  delay(100);
+  delay(1000);
 
   // change rotation of the screen (vertical)
   display.setRotation(0);
 }
 
 int count = 11;
-int scrollPos = SCREEN_HEIGHT_TXT; // Initial position of the text (off-screen, to the right)
+int scrollPos = SCREEN_HEIGHT_TXT; // Initial position of the text (off-screen, to the top)
 
 void loop() {
     // Clear the display before drawing again
     display.clearDisplay();
 
-    // Display the monkey animation (if using animation images)
+    // Display the animation
     display.drawBitmap(0, 0, wireframeui[count], 128, 64, WHITE);
 
     // Display text in different lines
@@ -948,14 +948,14 @@ void loop() {
     display.print("v 0.1");
 
     // ---------------------
-    // Scrolling text at the bottom
+    // Scrolling text from bottom to top
     // ---------------------
     display.setTextSize(1);
     display.setTextColor(WHITE);
 
-    // If the text goes off the screen (based on the screen width), reset the position
+    // If the text goes off the screen (based on the screen height), reset the position
     if (scrollPos < 20) {
-        scrollPos = SCREEN_HEIGHT_TXT;  // Go back to the right
+        scrollPos = SCREEN_HEIGHT_TXT;  // Go back to the bottom
     }
 
     // Draw the text at the position `scrollPos` at the bottom of the screen
@@ -968,7 +968,7 @@ void loop() {
     
 
     // Update the text position (move it to the left)
-    scrollPos -= 1; // Every cycle, the text moves 2 pixels to the left
+    scrollPos -= 1; // Every cycle, the text moves 1 pixel up
 
     // Update the screen with the new content
     display.display();
